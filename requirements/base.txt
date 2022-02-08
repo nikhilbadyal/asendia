@@ -1,0 +1,7 @@
+# Django
+# ------------------------------------------------------------------------------
+django==4.0.2 #  https://www.djangoproject.com/
+django-environ==0.8.1  # https://github.com/joke2k/django-environ
+
+# Django REST Framework
+djangorestframework==3.13.1  # https://github.com/encode/django-rest-framework

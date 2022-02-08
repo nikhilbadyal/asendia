@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: ascendia-django-image
+    container_name: ascendia-django
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: /start
+    networks:
+      - ascendia-network
+
+  postgres:
+    image: postgres:14-alpine
+    container_name: ascendia-postgres
+    restart: always
+    # volumes:
+    # For Z see the issue in the link. https://github.com/docker-library/postgres/issues/116#issuecomment-235839842
+    # - ascendia_local_postgres_data:/var/lib/postgresql/data:Z
+    env_file:
+      - ./.envs/.local/.postgres
+    networks:
+      - ascendia-network
+
+networks:
+  ascendia-network:
+    driver: bridge
