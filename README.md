@@ -6,5 +6,5 @@
 
 ## Create app
 
-- mkdir apps/<appName>
+- mkdir `apps/<appName>`
 - To create app run, `docker-compose run --rm django python manage.py startapp login apps/<appName>`
