@@ -24,9 +24,9 @@ services:
     image: postgres:14-alpine
     container_name: ascendia-postgres
     restart: always
-    # volumes:
+    volumes:
     # For Z see the issue in the link. https://github.com/docker-library/postgres/issues/116#issuecomment-235839842
-    # - ascendia_local_postgres_data:/var/lib/postgresql/data:Z
+      - ascendia-data:/var/lib/postgresql/data:Z
     env_file:
       - ./.envs/.local/.postgres
     networks:
@@ -35,3 +35,6 @@ services:
 networks:
   ascendia-network:
     driver: bridge
+volumes:
+  ascendia-data:
+    external: true
